@@ -1,4 +1,5 @@
 import * as OBJ from 'webgl-obj-loader';
+import * as _ from 'lodash';
 
 import GLC from '../GLCommander';
 import { Light } from '../LightSource';
@@ -9,9 +10,9 @@ import { calcDirection } from '../Utils/maths';
 import SETTINGS from '../../../../settings.json';
 import Renderer from '../Render/ModelRenderer';
 import ModelShader from '../Shaders/ModelShader';
-import { GAME_STATE } from '../../types';
+import { GAME_STATE, GameObject } from '../../types';
 
-export default async (id: string, setGameState: (s: GAME_STATE) => void, setTime: Function) => {
+export default async (id: string, setGameState: (s: GAME_STATE) => void, setTime: (time: number) => void, time: number) => {
   const canvas: HTMLCanvasElement = document.querySelector(`#${id}`);
   if (!canvas) {
     throw new Error(`#${id} not found canvas`);
@@ -41,14 +42,15 @@ export default async (id: string, setGameState: (s: GAME_STATE) => void, setTime
   });
 
   // Player
-  const response = await OBJ.downloadModels([
+  const response: OBJ.MeshMap = await OBJ.downloadModels([
     {
       obj: `/Resources/Objects/player.obj`,
     },
   ]);
   const player = Instantiator.Instantiate({
-    modelData: response.player as any,
+    modelData: response.player,
     ...SETTINGS.player,
+    modelId: 'player',
   });
   Renderer.player = player.instance;
   camera.follow = player.instance;
@@ -74,15 +76,21 @@ export default async (id: string, setGameState: (s: GAME_STATE) => void, setTime
 
     camera.generateMatrices();
     Renderer.render(light, camera);
-
+    const newTime = new Date().getTime();
     // Check finish
     if (!player.instance.collision) {
+      if (newTime > time + 1000) {
+        setTime(newTime);
+        time = newTime;
+      }
       window.requestAnimationFrame(render);
     } else {
-      setGameState('GameOver');
+      _.forEach(Renderer.models, (model: GameObject) => model.type.clear());
+      Renderer.models = {};
       Joystick.clear();
+      Instantiator.count = 0;
+      setGameState('GameOver');
     }
-    setTime(new Date().getTime());
   };
 
   window.requestAnimationFrame(render);

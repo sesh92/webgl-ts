@@ -1,7 +1,8 @@
 {
   "delayGenerationTime": 0.5,
   "turnSpeed": 0.1,
-  "countInstances": 100,
+  "gameSpeed": 0.5,
+  "countInstances": 10,
   "player": {
     "position": {
       "x": 0,

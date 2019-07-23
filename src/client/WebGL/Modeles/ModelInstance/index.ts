@@ -3,8 +3,7 @@ import { mat4, vec3 } from 'gl-matrix';
 import { createTransformationsMatrix } from '../../Utils/maths';
 import Renderer from '../../Render/ModelRenderer';
 import { ITickable, Vector3 } from '../../../types';
-
-const ignoreModel = ['earth'];
+import SETTINGS from '../../../../../settings.json';
 
 export class ModelInstance implements ITickable {
   position: vec3;
@@ -51,13 +50,14 @@ export class ModelInstance implements ITickable {
   tick = () => {
     const { player } = Renderer;
 
-    vec3.add(this.position, this.position, this.direction);
+    vec3.scaleAndAdd(this.position, this.position, this.direction, SETTINGS.gameSpeed);
+
     this.updateTransformationMatrix();
 
-    if (this.position[2] + 5 < player.position[2] || (vec3.dist(player.position, this.position) > 100 && !ignoreModel.includes(this.id))) {
+    if (this.position[2] + 5 < player.position[2] || vec3.dist(player.position, this.position) > 100) {
       this.reuse = true;
     }
-    if (this.id !== player.id && vec3.dist(this.position, player.position) < 1) {
+    if (this.id !== 'player' && vec3.dist(this.position, player.position) < 1) {
       player.collision = true;
     }
   };

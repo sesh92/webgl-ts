@@ -3,7 +3,7 @@ import { ModelInstance } from './WebGL/Modeles/ModelInstance';
 import { vec3 } from 'gl-matrix';
 
 export interface ITickable {
-  tick(player: ModelInstance): void;
+  tick(): void;
 }
 
 export type GameObject = {
@@ -58,5 +58,6 @@ export interface IWebGLProps {
   height: number;
   setGameState(state: GAME_STATE): void;
   setTime?: (time: number) => void;
+  time?: number;
   tryCounter: number;
 }

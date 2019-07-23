@@ -21,9 +21,8 @@ class Instantiator {
     this.count = 0;
   }
 
-  Instantiate = ({ modelData, position, rotation, scale, direction }) => {
+  Instantiate = ({ modelData, position, rotation, scale, direction, modelId = `obj_${this.count++}` }) => {
     const material = new Material();
-    const modelId = `obj_${this.count++}`;
     const instance: ModelInstance = new ModelInstance(position, rotation, scale, direction, modelId);
 
     GLC.meshInit(modelData);
@@ -47,11 +46,18 @@ class Instantiator {
     };
   };
 
-  InstantiatePrimitive = ({ modelData, position, rotation, scale, direction, textureName, modelId }: IInstantiatePrimitive): GameObject => {
+  InstantiatePrimitive = ({
+    modelData,
+    position,
+    rotation,
+    scale,
+    direction,
+    textureName,
+    modelId = `obj_${this.count++}`,
+  }: IInstantiatePrimitive): GameObject => {
     const material = new Material();
     const type = new ModelType(modelData);
     const instance: ModelInstance = new ModelInstance(position, rotation, scale, direction, modelId);
-    modelId = modelId || `obj_${this.count++}`;
 
     if (textureName) {
       material.addDiffuse(`/Resources/Textures/${textureName}.png`);

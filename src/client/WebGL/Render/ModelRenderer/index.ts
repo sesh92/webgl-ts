@@ -9,6 +9,8 @@ import { Camera } from '../../Camera';
 import { GameObject } from '../../../types';
 import Instantiator from '../../Instantiator';
 
+const ignoreModel = ['earth'];
+
 class ModelRenderer {
   shader: ModelShader;
   models: { [key: string]: GameObject };
@@ -44,8 +46,9 @@ class ModelRenderer {
 
     _.forEach(this.models, (model: GameObject, id: string) => {
       model.type.use(this.shader);
-
-      model.instance.tick();
+      if (!ignoreModel.includes(model.instance.id)) {
+        model.instance.tick();
+      }
       this.shader.enableTransformationMatrix(model.instance.getTransformationMatrix());
       GLC.drawTriangles(model.type.indices.length);
 

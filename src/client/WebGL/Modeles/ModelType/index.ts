@@ -72,5 +72,10 @@ export class ModelType {
     this.material.enable(shader);
   };
 
-  remove = () => {};
+  clear = () => {
+    GLC.deleteBuffer(this.indexBuffer);
+    GLC.deleteBuffer(this.normalBuffer);
+    GLC.deleteBuffer(this.textureCoordsBuffer);
+    GLC.deleteBuffer(this.vertexBuffer);
+  };
 }

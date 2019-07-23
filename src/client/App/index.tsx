@@ -13,8 +13,9 @@ export default () => {
   const showScore = () => ((time - startTime) / 1000).toFixed(0);
 
   useEffect(() => {
-    if (GameState === 'GameOver' && time - startTime > bestScore * 1000) {
-      setBestScore(+((time - startTime) / 1000).toFixed(0));
+    const newScore = +(Math.abs(time - startTime) / 1000).toFixed(0);
+    if (GameState === 'GameOver' && newScore > bestScore) {
+      setBestScore(newScore);
     }
   }, [GameState]);
 
@@ -41,6 +42,7 @@ export default () => {
           <div className="interface">{showScore()}</div>
           <WebGL
             tryCounter={tryCounter}
+            time={time}
             setTime={setTime}
             setGameState={setGameState}
             height={window.innerHeight}
@@ -54,12 +56,12 @@ export default () => {
         <div className="wrapper">
           GAME OVER
           <br />
-          Your score: {bestScore}
+          Best score: {bestScore}
           <br />
           <button
             onClick={() => {
-              setTime(new Date().getTime());
               setStartTime(new Date().getTime());
+              setTime(new Date().getTime());
               setTryCounter(tryCounter + 1);
               setGameState('Game');
             }}
