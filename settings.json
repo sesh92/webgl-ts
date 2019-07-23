@@ -1,0 +1,76 @@
+{
+  "delayGenerationTime": 0.5,
+  "turnSpeed": 0.1,
+  "countInstances": 100,
+  "player": {
+    "position": {
+      "x": 0,
+      "y": -5,
+      "z": 0
+    },
+    "rotation": {
+      "x": -90,
+      "y": 0,
+      "z": 0
+    },
+    "direction": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 0.0025
+  },
+  "instance": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "direction": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 0.5
+  },
+  "DEFAULT_LIGHT_POSITION": {
+    "x": 100,
+    "y": 100,
+    "z": -100
+  },
+  "CAMERA": {
+    "POSITION": {
+      "x": 0,
+      "y": -3,
+      "z": 3
+    },
+    "ROTATION": {
+      "x": 30,
+      "y": 180,
+      "z": 0
+    },
+    "LIMITS": {
+      "MIN": 0.001,
+      "MAX": 1000
+    },
+    "FOV": 80
+  },
+
+  "DEFAULT_LIGHT_COLOR": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 0.4
+  },
+  "DEFAULT_CLEAR_COLOR": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+  }
+}

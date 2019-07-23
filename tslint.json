@@ -1,0 +1,26 @@
+{
+  "defaultSeverity": "warning",
+  "rules": {
+    "ordered-imports": false,
+    "member-access": false,
+    "object-literal-sort-keys": false,
+    "no-empty-interface": false,
+    "no-empty": false,
+    "member-ordering": false,
+    "no-shadowed-variable": false,
+    "no-unused-variable": false,
+    "max-classes-per-file": false,
+    "no-string-literal": false,
+    "await-promise": true,
+    "no-inferred-empty-object-type": true,
+    "no-duplicate-imports": true,
+    "prefer-conditional-expression": false,
+    "no-implicit-dependencies": false,
+    "no-floating-promises": false,
+    "no-parameter-reassignment": false,
+    "variable-name": false,
+    "no-console": false,
+    "interface-over-type-literal": false
+  },
+  "extends": ["tslint:recommended", "tslint-config-prettier"]
+}
