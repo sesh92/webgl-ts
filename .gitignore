@@ -15,5 +15,6 @@ yarn-error.log*
 
 .idea
 .vscode
+.cache
 
 test-report.json
