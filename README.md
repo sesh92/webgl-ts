@@ -1,7 +1,11 @@
-# Install dependencies
+# (boilerplate/example) project
 
-## npm i
+> WebGL + typescript + reactjs
 
-# BUILD & RUN PROJECT
+## INSTALLATION
 
-## npm run dev
+> npm i
+
+## QUICK START
+
+> npm run dev
