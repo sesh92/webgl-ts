@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json",
-    "build": "tsc",
-    "dev": "ts-node-dev src/index.ts",
+    "build": "parcel build src/client/index.html --public-url .",
+    "start": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "https://sesh92.github.io/webgl-ts/",

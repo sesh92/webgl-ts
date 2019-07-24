@@ -9,9 +9,6 @@ const server: http.Server = new http.Server(app);
 
 const port: number = 8080 || parseInt(process.env.PORT, 10);
 
-const bundler: Bundler = new Bundler(path.join(__dirname, '../src/client/index.html'));
-bundler.bundle();
-
 app.use(express.static('dist'));
 app.use('/Resources', express.static('Resources'));
 
